@@ -13,15 +13,16 @@ function useDebounce<T>(value:T, delay:number){
     return debounceValue
 } 
 
+
 //lifecycle component mounting,updating,unmounting
 
 export function WeatherApp() {
     const [cityInput,setCityInput]=useState("")
     const [weatherData,setWeatherData]=useState<{city:string;temperature:number} | null>(null)
     const [loading,setLoading]=useState(false);
-    const debounceCity=useDebounce(cityInput,5000)
+    const debounceCity=useDebounce(cityInput,1000)
 
-    console.log(debounceCity)
+    // console.log(debounceCity)
 
     useEffect(()=>{
         if(debounceCity){

@@ -19,16 +19,27 @@ export function ProductApp() {
     const [productInput,setProductInput]=useState("")
     const [productData,setProductData]=useState<{product:string;price:number} | null>(null)
     const [loading,setLoading]=useState(false);
+    const [noProduct,setNoProduct]=useState(false);
     const debounceProduct=useDebounce(productInput,1000)
 
-    console.log(debounceProduct)
+    // console.log(debounceProduct)
 
     useEffect(()=>{
         if(debounceProduct){
-            setLoading(true);
-            fetchProduct(debounceProduct).then((data)=>setProductData(data)).finally(()=>setLoading(false));
-        }
-    },[debounceProduct]);
+            setLoading(true);setNoProduct(false);
+            fetchProduct(debounceProduct)
+            .then((data) => {
+                if (!data) {
+                  setNoProduct(true);
+                } else {
+                  setProductData(data);
+                }
+              })
+              .finally(() => setLoading(false));
+          } else {
+            setNoProduct(false);
+          }
+        }, [debounceProduct]);
 
 
     const  handleOnChange=(e:React.ChangeEvent<HTMLInputElement>)=> {
@@ -39,8 +50,10 @@ export function ProductApp() {
     <h1>Product App</h1>
     <input type="text" placeholder="Enter Product" value={productInput} onChange={handleOnChange} />
         {loading &&  <p>Loading...</p>}
+        
+      {!loading && noProduct && <p>Produk tidak ditemukan</p>}
 
-        {productData&&!loading && (
+        {productData&&!loading&&!noProduct&& (
             <>
             <h2>{productData.product}</h2>
             <h3> Rp {productData.price}</h3>
