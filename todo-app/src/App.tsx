@@ -3,6 +3,7 @@ import "./App.css";
 import Counter, { CounterProfile as CounterProfileItem } from "./components/Counter";
 import { Button } from "./components/Button";
 import { TodoList } from "./components/TodoList";
+import { WeatherApp } from "./components/WeatherApp";
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -42,6 +43,9 @@ function App() {
           isDone={done3}
         />
       )}
+
+        <WeatherApp/>
+      
     </>
   );
 }
