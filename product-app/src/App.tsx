@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { ProductCard } from "./components/ProductCard";
 import { Cart } from "./components/Cart";
+import { ProductApp } from "./components/ProductApp";
 
 function App() {
   const [Addproduct1,setAdd1]=useState(false);
@@ -31,6 +32,8 @@ function App() {
         price={7000} EventOnClick={()=> setAdd3(true) } Isadded={Addproduct3}  />)}
 
       </div>
+
+      <ProductApp/>
     </>
   );
 }
