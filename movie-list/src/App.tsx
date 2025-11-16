@@ -51,8 +51,6 @@ function App() {
           <Route path="/about" element={<About/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/movies" element={<Movies/>}/>
-
-          {/* Private Route */}
           <Route
             path="/favorites"
             element={
