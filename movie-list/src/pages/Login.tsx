@@ -17,7 +17,7 @@ export function Login() {
     
 if(username== "admin" && password =="admin"){
     login("token_abc") 
-    navigate("/products")
+    navigate("/favorites")
 }
 else{
     setErrorMessage("username atau password salah")
