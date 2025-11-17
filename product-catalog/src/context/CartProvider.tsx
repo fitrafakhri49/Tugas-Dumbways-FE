@@ -8,20 +8,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(false);
   const [idCounter, setIdCounter] = useState(1);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await api.get("/products");
-        setCarts(res.data);
-      } catch (error) {
-        console.error("Gagal Fetch Data Produk");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
   const createCart = (title: string, description: string, image: string) => {
     setLoading(true);
     const newCart: Product = { id: idCounter, title, description, quantity: 1, image };
