@@ -8,8 +8,9 @@ import { AuthProvider } from './context/AuthProvider';
 import { useAuth } from './hooks/useAuth';
 import { Login } from './pages/Login';
 import PrivateRoute from './lib/PrivateRoute';
-// import {  } from "module";
 import ThemeToggle from './components/ThemeToggle';
+import Cart from './pages/Cart';
+ "./pages/Cart";
 
 function Header() {
   const {token,logout}=useAuth();
@@ -23,6 +24,10 @@ function Header() {
         </Button>
         {token && (  <Button asChild variant="outline">
           <Link to="/products">Products</Link>
+        </Button>
+)}
+            {token && (  <Button asChild variant="outline">
+          <Link to="/cart">Cart</Link>
         </Button>
 )}
         {token? (
@@ -48,6 +53,11 @@ function App() {
        <Route path='/products' element={
         <PrivateRoute>
         <Products></Products>
+        </PrivateRoute>
+       }></Route>
+         <Route path='/cart' element={
+        <PrivateRoute>
+        <Cart></Cart>
         </PrivateRoute>
        }></Route>
         </Routes>

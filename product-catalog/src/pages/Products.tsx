@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 import { useState,useEffect } from "react";
 import {
     Card,
@@ -24,10 +24,11 @@ type ProductType ={
     id:number;
     title:string;
     description:string;
+    image:string;
 }
 
 
-export default function Posts(){
+export default function Products(){
 
     const [products,setProducts]=useState<ProductType[]>([]);
     const [loading,setLoading]=useState(true)
@@ -61,8 +62,10 @@ export default function Posts(){
                 <Card onClick={()=>setSelectedProduct(product)} className="cursor-pointer hover:shadow-md transition">
                 <CardHeader>
                     <CardTitle>{product.title}</CardTitle>
-                    <CardDescription className="truncate">{product.description}</CardDescription>
-                    </CardHeader>    
+                    <CardDescription className="truncate">{product.description}
+                    </CardDescription>
+                    </CardHeader>  
+                    <CardContent><img src={product.image} alt="" /></CardContent>  
                     </Card>                
                     </DialogTrigger>
                 <DialogContent>
