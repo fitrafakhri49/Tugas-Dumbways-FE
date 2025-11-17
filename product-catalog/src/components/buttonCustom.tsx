@@ -10,7 +10,7 @@ type CartButtonProps = {
 export function CartButton({ product }: CartButtonProps) {
   const { createCart, loading } = useCart();
   const [added, setAdded] = useState(false);
-  const [localLoading, setLocalLoading] = useState(false); // loading lokal
+  const [localLoading, setLocalLoading] = useState(false); 
 
   const handleClick = () => {
     setLocalLoading(true);
