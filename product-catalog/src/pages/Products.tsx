@@ -1,4 +1,3 @@
-// import { Link } from "react-router-dom"
 import { useState,useEffect } from "react";
 import {
     Card,
@@ -9,6 +8,8 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
+
+  import { CartButton } from "../components/buttonCustom";
 import { api } from "@/services/api";
 import {
     Dialog,
@@ -20,15 +21,17 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
+
 type ProductType ={
     id:number;
     title:string;
     description:string;
-    image:string;
+    image:string
+    quantity:number
 }
 
 
-export default function Products(){
+export default function Posts(){
 
     const [products,setProducts]=useState<ProductType[]>([]);
     const [loading,setLoading]=useState(true)
@@ -63,19 +66,19 @@ export default function Products(){
                 <CardHeader>
                     <CardTitle>{product.title}</CardTitle>
                     <CardDescription className="truncate">{product.description}
+                    <img src={product.image} alt="" />
                     </CardDescription>
-                    </CardHeader>  
-                    <CardContent><img src={product.image} alt="" /></CardContent>  
+                    </CardHeader>    
                     </Card>                
                     </DialogTrigger>
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>{selectedProduct?.title}</DialogTitle>
-                        <DialogDescription>
-                            {selectedProduct?.description}
-                        </DialogDescription>
-                    </DialogHeader>
-                </DialogContent>
+               <DialogContent>
+  <DialogHeader>
+    <DialogTitle>{selectedProduct?.title}</DialogTitle>
+    <DialogDescription>{selectedProduct?.description}</DialogDescription>
+
+    {selectedProduct && <CartButton product={selectedProduct} />}
+  </DialogHeader>
+</DialogContent>
             </Dialog>
             ))}
             </ul> 

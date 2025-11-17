@@ -11,6 +11,7 @@ import PrivateRoute from './lib/PrivateRoute';
 import ThemeToggle from './components/ThemeToggle';
 import Cart from './pages/Cart';
  "./pages/Cart";
+import { CartProvider } from "./context/CartProvider";
 
 function Header() {
   const {token,logout}=useAuth();
@@ -43,6 +44,7 @@ function Header() {
 function App() {
 
   return (
+    <CartProvider>
     <AuthProvider>
       <BrowserRouter>
         <Header/>
@@ -63,6 +65,7 @@ function App() {
         </Routes>
         </BrowserRouter>
     </AuthProvider>
+    </CartProvider>
   )
 }
 
